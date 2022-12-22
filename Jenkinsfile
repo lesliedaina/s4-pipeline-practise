@@ -29,9 +29,9 @@ pipeline {
                             name: 'User',
                             description: 'leslie'
                             trim: true
-                           ),
+                              ),
 
-                             string(
+                            string(
                             defaultValue: 'leslie',
                             name: 'DB-Tag',
                             description: 'leslie-v1'
