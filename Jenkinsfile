@@ -21,38 +21,37 @@ pipeline {
                         choice(
                             choices: ['Dev', 'sandox' , 'Prod'], 
                             name: 'Environment'
-                                 
-                                ),
+                              ),
 
-                           string(
+                        string(
                             defaultValue: 'leslie',
                             name: 'User',
                             description: 'leslie'
                             trim: true
+                            ),
+
+                        string(
+                             defaultValue: 'leslie',
+                             name: 'DB-Tag',
+                             description: 'leslie-v1'
+                             trim: true
+                               ),
+
+                        string(
+                              defaultValue: 'leslie',
+                              name: 'UI-Tag',
+                              description: 'leslie-v1'
+                              trim: true
+                               ),
+
+                        string(
+                              defaultValue: 'leslie',
+                              name: 'WEATHER-Tag',
+                              description: 'leslie-v1'
+                              trim: true
                               ),
-
-                            string(
-                            defaultValue: 'leslie',
-                            name: 'DB-Tag',
-                            description: 'leslie-v1'
-                            trim: true
-                             ),
-
-                             string(
-                            defaultValue: 'leslie',
-                            name: 'UI-Tag',
-                            description: 'leslie-v1'
-                            trim: true
-                             ),
-
-                             string(
-                            defaultValue: 'leslie',
-                            name: 'WEATHER-Tag',
-                            description: 'leslie-v1'
-                            trim: true
-                             ),
                                                          
-                          string(
+                        string(
                             defaultValue: 'leslie',
                             name: 'AUTH-Tag',
                             description: 'leslie-v1'
