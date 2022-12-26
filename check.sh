@@ -1,3 +1,9 @@
+
+ cat <<EOF > check.sh
+
+
+
+
 #! /bin/bash
 
 USER=${user}
@@ -13,3 +19,4 @@ echo "you have permission to run this job"
  exit 1
  fi
 EOF
+
