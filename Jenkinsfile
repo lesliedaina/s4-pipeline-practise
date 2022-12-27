@@ -1,61 +1,60 @@
-
-
 pipeline {
-    agent {
-     label ("node1 || node2 ||  node3 || node4 ||  node5 ||  branch ||  main ||  jenkins-node || docker-agent ||  jenkins-docker2 ||  preproduction ||  production")
-            }
+    agent any
 
-options {
+   options {
     buildDiscarder(logRotator(numToKeepStr: '20'))
     disableConcurrentBuilds()
     timeout (time: 60, unit: 'MINUTES')
     timestamps()
   }
 
+
     stages {
+        
+
         stage('Setup parameters') {
             steps {
                 script {
                     properties([
-                        parameters([    
+                        parameters([
                         
                         choice(
-                            choices: ['Dev', 'Sanbox','Prod'], 
-                            name: 'Environment'   
-                                ),
+                            choices: ['Dev', 'sandox' , 'Prod'], 
+                            name: 'Environment'
+                              ),
 
-                          string(
-                            defaultValue: 's4user',
+                        string(
+                            defaultValue: 'leslie',
                             name: 'User',
-			                description: 'Required to enter your name',
-                            trim: true
-                            ),
+                            description: 'leslie',
+                            trim: true ),
+                            
 
-                          string(
-                            defaultValue: 'eric-001',
-                            name: 'DB-Tag',
-			                description: 'Required to enter the image tag',
-                            trim: true
-                            ),
+                        string(
+                             defaultValue: 'leslie',
+                             name: 'DB-Tag',
+                             description: 'leslie-v1',
+                             trim: true
+                               ),
 
-                          string(
-                            defaultValue: 'eric-001',
-                            name: 'UI-Tag',
-			                description: 'Required to enter the image tag',
-                            trim: true
-                            ),
+                        string(
+                              defaultValue: 'leslie',
+                              name: 'UI-Tag',
+                              description: 'leslie-v1',
+                              trim: true
+                               ),
 
-                          string(
-                            defaultValue: 'eric-001',
-                            name: 'WEATHER-Tag',
-			                description: 'Required to enter the image tag',
-                            trim: true
-                            ),
-
-                          string(
-                            defaultValue: 'eric-001',
+                        string(
+                              defaultValue: 'leslie',
+                              name: 'WEATHER-Tag',
+                              description: 'leslie-v1',
+                              trim: true
+                              ),
+                                                         
+                        string(
+                            defaultValue: 'leslie',
                             name: 'AUTH-Tag',
-			                description: 'Required to enter the image tag',
+                            description: 'leslie-v1',
                             trim: true
                             ),
                         ])
@@ -63,8 +62,51 @@ options {
                 }
             }
         }
+        stage('permission') {
+            steps {
+                sh '''
+               
+                 
+                      cat <<EOF > check.sh
+
+
+
+
+                  #! /bin/bash
+
+                   USER=${user}
+                   cat permission.txt | grep -i $USER 
+
+                   if
+                 [[ $? -eq 0]]
+                 then
+                 echo "you have permission to run this job"
  
-        stage('Hello') {
+                 else
+                echo "you don't have permission to run this job"
+                exit 1
+               fi
+              EOF
+
+ 
+
+ 
+                ls 
+                pwd
+                '''
+            }
+        }
+
+        stage('cleaning') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        } 
+
+         stage('sonarqube') {
             steps {
                 sh '''
                 ls 
@@ -72,5 +114,186 @@ options {
                 '''
             }
         }
+
+        stage('buil-dev') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+         stage('build-sanbox') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+         stage('build-prod') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+         stage('login') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+         }
+        stage('push-to dockerhub-dev') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+        stage('push-to-dockerhub-sanbox') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+        stage('push-helm-charts-dev') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+         stage('update helm charts-sandox') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+        stage('update helm chart-sanbox') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+         stage('update helm charts-dev') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+         stage('update helm chartas-prod') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+         stage('wait for argocd') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+
+         stage('post build') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+         stage('Hello') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                '''
+            }
+        }
+
+
+
+
+
+
+
+
     }
+  post {
+    
+    success {
+      slackSend (channel: '#development-alerts', color: 'good', message: "Images was successfull build")
+    }
+
+    failure {
+      slackSend (channel: '#development-alerts', color: '#FF0000', message: "FAILURE: Images  have NOT been pushed ")
+    }
+  }
+  
 }
+
+
+ cat <<EOF > check.sh
+
+
+
+
+#! /bin/bash
+
+USER=${user}
+cat permission.txt | grep -i $USER 
+
+if
+[[ $? -eq 0]]
+then
+echo "you have permission to run this job"
+ 
+ else
+ echo "you don't have permission to run this job"
+ exit 1
+ fi
+EOF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
