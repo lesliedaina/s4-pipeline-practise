@@ -11,7 +11,6 @@ pipeline {
 
     stages {
         
-
         stage('Setup parameters') {
             steps {
                 script {
@@ -97,7 +96,7 @@ pipeline {
             }
         }
 
-        stage('Hello') {
+        stage('cleaning') {
             steps {
                 sh '''
                 ls 
@@ -106,7 +105,7 @@ pipeline {
             }
         } 
 
-         stage('Hello') {
+         stage('sonarqube') {
             steps {
                 sh '''
                 ls 
@@ -115,7 +114,7 @@ pipeline {
             }
         }
 
-        stage('Hello') {
+        stage('buil-dev') {
             steps {
                 sh '''
                 ls 
@@ -124,7 +123,7 @@ pipeline {
             }
         }
 
-         stage('Hello') {
+         stage('build-sanbox') {
             steps {
                 sh '''
                 ls 
@@ -133,7 +132,7 @@ pipeline {
             }
         }
 
-         stage('Hello') {
+         stage('build-prod') {
             steps {
                 sh '''
                 ls 
@@ -142,7 +141,7 @@ pipeline {
             }
         }
 
-         stage('Hello') {
+         stage('login') {
             steps {
                 sh '''
                 ls 
@@ -150,7 +149,7 @@ pipeline {
                 '''
             }
          }
-        stage('Hello') {
+        stage('push-to dockerhub-dev') {
             steps {
                 sh '''
                 ls 
@@ -159,7 +158,7 @@ pipeline {
             }
         }
 
-        stage('Hello') {
+        stage('push-to-dockerhub-sanbox') {
             steps {
                 sh '''
                 ls 
@@ -168,7 +167,7 @@ pipeline {
             }
         }
 
-        stage('Hello') {
+        stage('push-helm-charts-dev') {
             steps {
                 sh '''
                 ls 
@@ -177,7 +176,7 @@ pipeline {
             }
         }
 
-         stage('Hello') {
+         stage('update helm charts-sandox') {
             steps {
                 sh '''
                 ls 
@@ -186,7 +185,7 @@ pipeline {
             }
         }
 
-        stage('Hello') {
+        stage('update helm chart-sanbox') {
             steps {
                 sh '''
                 ls 
@@ -195,7 +194,7 @@ pipeline {
             }
         }
 
-         stage('Hello') {
+         stage('update helm charts-dev') {
             steps {
                 sh '''
                 ls 
@@ -204,7 +203,7 @@ pipeline {
             }
         }
 
-         stage('Hello') {
+         stage('update helm chartas-prod') {
             steps {
                 sh '''
                 ls 
@@ -213,7 +212,7 @@ pipeline {
             }
         }
 
-         stage('Hello') {
+         stage('wait for argocd') {
             steps {
                 sh '''
                 ls 
@@ -223,16 +222,7 @@ pipeline {
         }
 
 
-         stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-
-         stage('Hello') {
+         stage('post build') {
             steps {
                 sh '''
                 ls 
@@ -242,89 +232,6 @@ pipeline {
         }
 
          stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-
-        stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        } 
-
-
-         stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-
-
-         stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-
-         stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-
-        stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-   
-        stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }  
-
-         stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-
-         stage('Hello') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
-            }
-        }
-
-        stage('Hello') {
             steps {
                 sh '''
                 ls 
